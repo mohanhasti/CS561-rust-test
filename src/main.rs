@@ -24,7 +24,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = reqwest::Client::new();
 
     let response = client
-        .get("https://api.openweathermap.org/data/2.5/weather?q=corvallis&appid=b98e3f089c86867862f28236d174368a&&units=imperial")
+        // .get("https://api.openweathermap.org/data/2.5/weather?q=corvallis&appid=b98e3f089c86867862f28236d174368a&&units=imperial")
+        // .get("http://54.172.120.22:3000/GET/data")
+        .get("http://172.19.0.2:3000/GET/data")
         .send()
         .await?;
 
@@ -32,7 +34,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .json::<model::Weather>()
         .await?;
 
-    println!("\nWeather from openweathermap.org:\n {:?}", weather2);
+    // println!("\nWeather from openweathermap.org:\n {:?}", weather2);
+    println!("\n Weather from mock REST API:\n {:?}", weather2);
 
     Ok(())
 }
